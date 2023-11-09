@@ -2,6 +2,8 @@ use poem_openapi::{OpenApi, payload::PlainText, param::Query};
 use sqlx::{Postgres, Pool, query};
 
 pub mod auth;
+pub mod extractor;
+pub mod role;
 
 pub struct MainApi {
     pool: Pool<Postgres>,
@@ -13,8 +15,11 @@ impl MainApi {
     }
 }
 
+/// This API will get removed soon, but until it does, it is like a misc API
+#[poem_grants::open_api]
 #[OpenApi]
 impl MainApi {
+    #[has_permissions("a")]
     #[oai(path = "/hello", method = "get")]
     async fn index(&self, name: Query<Option<String>>) -> PlainText<String> {
         match name.0 {
@@ -22,6 +27,7 @@ impl MainApi {
             None => PlainText("hello!".to_string()),
         }
     }
+
     #[oai(path = "/math", method = "get")]
     async fn math(&self) -> PlainText<String> {
         let res = query!("SELECT 1 + 1 AS math_result")
