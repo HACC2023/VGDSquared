@@ -1,0 +1,20 @@
+body {
+    color: #660000;
+    outline: 10px black solid;
+    outline-color: #660000;
+    background-color: #D4AF37;
+
+}
+
+#hello {
+    color: #000000;
+}
+
+div#hello {
+    width: 100px;
+    height: 100px;
+    border: 15px #000000;
+    padding: 50px;
+    margin: 10px;
+    background-color: black;
+}
