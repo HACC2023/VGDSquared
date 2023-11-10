@@ -1,0 +1,16 @@
+{
+  "name": "vgdsquared",
+  "description": "(PostgreSQL)[https://www.postgresql.org/download/] - Required to run\r (Rust)[https://www.rust-lang.org/tools/install] - For modifying backend\r Docker - For deploying",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.158.0"
+  }
+}
