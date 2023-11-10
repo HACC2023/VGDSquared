@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+}
+ 
+header {
+    font-weight: bold;
+}
+ 
+#models {
+    padding: 40px 0;
+}
+ 
+.model {
+    width: 100%;
+    height: 300px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
