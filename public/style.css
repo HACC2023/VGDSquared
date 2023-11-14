@@ -1,3 +1,4 @@
+
 #opacity {
     height: 1000px;
     width: auto;
@@ -5,4 +6,60 @@
     color: black;
     opacity: 0.5;
     z-index: 99;
+}
+body{
+    margin-bottom: -1rem;
+}
+
+#main{
+    background-image: url('/assets/PicOfLahaina.webp');
+    width: 90.5rem;
+    height: 790px;
+    margin-top: -10px;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+#overlay{
+    width: 90.5rem;
+    height: 50rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-top: -800px;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-top: -50rem;
+}
+
+@font-face {
+    font-family: font1;
+    src: url('/assets/fonts/AcherusGrotesque-Regular.otf');
+}
+
+#title{
+    position: absolute;
+    margin-top: -575px;
+    margin-left: 450px;
+    color: rgb(245, 175, 54);
+    font-family: font1;
+    font-size: 55px;
+}
+
+#text{
+    position: absolute;
+    margin-top: -450px;
+    margin-left: 400px;
+    color: white;
+    font-family: font1;
+    font-size: 25px;
+    width: 650px;
+    text-align: center;
+}
+
+#menuPic{
+    position: absolute;
+    width: 6rem;
+    height: 5rem;
+    margin-top: -46rem;
+    margin-left: 2rem;
+
 }
