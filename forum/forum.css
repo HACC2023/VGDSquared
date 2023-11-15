@@ -1,0 +1,57 @@
+body {
+    background-image: url("/public/image/10_Ge.webp");
+}
+
+.submitMenu {
+    background-color: #fff;
+    opacity: 0.75;
+    border-radius: 0 2rem 2rem 0;
+    height: 40rem;
+    width: 25rem;
+    margin-left: -.45rem;
+    text-align: center;
+}
+
+#title {
+    font-size: 3rem;
+}
+
+#forumMessage {
+    max-width: 60rem;
+    height: 1rem;
+    display: flex;
+    margin-left: 26rem;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#submit{
+    display: block;
+    text-align: right;
+    width: 1rem;
+    height: .8rem;
+}
+
+#posts {
+    display: flex;
+    width: 50rem;
+    height: 80rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    height: .5rem;
+    margin-bottom: 5rem;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+textarea {
+    height: .8rem;
+    width: 60rem;
+    margin-bottom: 10px;
+}

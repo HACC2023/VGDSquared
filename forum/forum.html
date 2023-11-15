@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="forum.css">
+</head>
+<body>
+    <div class="submitMenu">
+        <h1 id="title">Submissions</h1>
+        <button class="dropbtn" id="model">3D Models</button>
+        <button class="dropbtn" id="image">Images</button>
+        <button class="dropbtn" id="question">Questions</button>
+        <button class="dropbtn" id="idea">Ideas</button>
+        <button class="submit">Submit</button>
+    </div>
+    
+    <div id="forumMessage">
+        <div id="posts"></div>
+        <form id="postForm">
+            <textarea id="message" placeholder="Reply" required></textarea>
+            <button type="submit">Post</button>
+        </form>
+    </div>
+
+    <script src="/public/forum.js"></script>
+</body>
+</html>
