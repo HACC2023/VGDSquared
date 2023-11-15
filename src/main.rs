@@ -1,5 +1,7 @@
 // Remove this later
-#![allow(unused_imports)]
+#![allow(unused_imports, warnings)]
+
+use std::fs::File;
 
 use const_format::concatcp;
 use dotenv::dotenv;
@@ -14,7 +16,8 @@ use crate::api::{auth::AuthApi, extractor::auth_extractor, thread::ThreadApi, Ma
 
 pub mod api;
 
-const PORT: u16 = 3000;
+const PORT: u16 = 80;
+pub const DOMAIN: &str = "givemeyournotes.com";
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
@@ -25,7 +28,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
         .with_file(true)
         .with_line_number(true)
         .with_thread_ids(true)
-        .with_target(true)
+        .with_target(false)
         .finish();
     tracing::subscriber::set_global_default(tracing_sub).unwrap();
     dotenv().ok();
@@ -48,7 +51,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
             "/",
             StaticFilesEndpoint::new("public/")
                 .show_files_listing()
-                .index_file("index.html"),
+                .index_file("index.html")
+                .with(GrantsMiddleware::with_extractor(auth_extractor))
         )
         .nest(
             "/api",
@@ -62,12 +66,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
                 .with(GrantsMiddleware::with_extractor(auth_extractor)),
         );
 
-    let listener = TcpListener::bind(concatcp!("127.0.0.1:", PORT));
-    poem::Server::new(listener).run(app).await?;
-
+    let listener = TcpListener::bind(("0.0.0.0", PORT));
     println!(
-        "Started server on port {} (http://localhost:{})",
+        "Starting server on port {} (http://localhost:{})",
         PORT, PORT
     );
+    poem::Server::new(listener).run(app).await?;
+
     Ok(())
 }

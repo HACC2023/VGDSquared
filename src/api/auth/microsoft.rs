@@ -1,6 +1,7 @@
 use const_format::concatcp;
 use serde::Serialize;
 use dotenv_codegen::dotenv;
+use crate::DOMAIN;
 
 use super::{AuthApi, OAuthCallbackResponse};
 
@@ -15,7 +16,7 @@ impl AuthApi {
         id: dotenv!("MICROSOFT_CLIENT_ID"),
         secret: dotenv!("MICROSOFT_CLIENT_SECRET"),
         tenant: dotenv!("MICROSOFT_CLIENT_TENANT"),
-        callback_url: "http://localhost:3000/api/oauth/microsoft/callback",
+        callback_url: concatcp!("https://", DOMAIN, "/api/oauth/microsoft/callback"),
     };
 
     pub(super) fn microsoft_redirect_string() -> String {

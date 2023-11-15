@@ -1,13 +1,14 @@
 use std::time::Duration;
 
+use const_format::concatcp;
 use dotenv_codegen::dotenv;
 use jsonwebtoken::Validation;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
-use tracing::{info, error};
+use tracing::{error, info};
 
-use crate::api::auth::OAuthCallbackResponse;
+use crate::{api::auth::OAuthCallbackResponse, DOMAIN};
 
 use super::AuthApi;
 
@@ -17,7 +18,7 @@ impl AuthApi {
         token_url: "https://accounts.google.com/o/oauth2/token",
         id: dotenv!("GOOGLE_CLIENT_ID"),
         secret: dotenv!("GOOGLE_CLIENT_SECRET"),
-        callback_url: "http://localhost:3000/api/oauth/google/callback",
+        callback_url: concatcp!("https://", DOMAIN, "/api/oauth/google/callback"),
     };
 
     pub fn google_redirect_string() -> String {
@@ -80,7 +81,7 @@ impl AuthApi {
             Ok(it) => it,
             Err(err) => {
                 println!("Error when getting body: {}", err);
-                return OAuthCallbackResponse::SuccessfullyAuthenticated("localhost:3000/a".to_string());
+                return OAuthCallbackResponse::AuthenticationError;
             }
         };
 
@@ -102,7 +103,7 @@ impl AuthApi {
         validation.insecure_disable_signature_validation();
         */
 
-        OAuthCallbackResponse::SuccessfullyAuthenticated("http://localhost:3000/".to_string())
+        OAuthCallbackResponse::SuccessfullyAuthenticated(concatcp!("http://", DOMAIN).to_string())
     }
     pub(crate) async fn google_callback(&self, code: String) -> OAuthCallbackResponse {
         info!("Callback! {}", code);
