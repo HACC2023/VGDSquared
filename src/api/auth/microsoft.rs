@@ -15,7 +15,7 @@ impl AuthApi {
         id: dotenv!("MICROSOFT_CLIENT_ID"),
         secret: dotenv!("MICROSOFT_CLIENT_SECRET"),
         tenant: dotenv!("MICROSOFT_CLIENT_TENANT"),
-        callback_url: "http://localhost:3000/api/sessions/oauth/microsoft/callback",
+        callback_url: "http://localhost:3000/api/oauth/microsoft/callback",
     };
 
     pub(super) fn microsoft_redirect_string() -> String {

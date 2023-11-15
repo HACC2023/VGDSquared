@@ -4,6 +4,7 @@ use sqlx::{Postgres, Pool, query};
 pub mod auth;
 pub mod extractor;
 pub mod role;
+pub mod thread;
 
 pub struct MainApi {
     pool: Pool<Postgres>,
@@ -19,7 +20,6 @@ impl MainApi {
 #[poem_grants::open_api]
 #[OpenApi]
 impl MainApi {
-    #[has_permissions("a")]
     #[oai(path = "/hello", method = "get")]
     async fn index(&self, name: Query<Option<String>>) -> PlainText<String> {
         match name.0 {
@@ -28,6 +28,7 @@ impl MainApi {
         }
     }
 
+    #[has_permissions("something")]
     #[oai(path = "/math", method = "get")]
     async fn math(&self) -> PlainText<String> {
         let res = query!("SELECT 1 + 1 AS math_result")

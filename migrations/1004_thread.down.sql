@@ -1,0 +1,2 @@
+DROP TABLE thread CASCADE;
+DROP TABLE thread_content CASCADE;
